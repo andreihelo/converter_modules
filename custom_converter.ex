@@ -8,7 +8,7 @@ defmodule CustomConverter do
 
   import TemperatureConverter
   import CurrencyConverter
-  import TimeConverter
+  # import TimeConverter
 
   def celsius_to_fahrenheit(value) do
     to_fahrenheit(value) |> print_fahrenheit
@@ -25,17 +25,17 @@ defmodule CustomConverter do
   def currency(value, source_currency \\ :usd, destination_currency \\ :mxn) do
     case {source_currency, destination_currency} do
       {:mxn, :usd} ->
-        print_currency_equivalence(value, source_currency, mxn_to_usd(value), destination_currency)
+        print_currency_equivalence(value, source_currency, exchange(:mxn, :usd, value), destination_currency)
       {:usd, :mxn} ->
-        print_currency_equivalence(value, source_currency, usd_to_mxn(value), destination_currency)
+        print_currency_equivalence(value, source_currency, exchange(:usd, :mxn, value), destination_currency)
       {:mxn, :jpy} ->
-        print_currency_equivalence(value, source_currency, mxn_to_jpy(value), destination_currency)
+        print_currency_equivalence(value, source_currency, exchange(:mxn, :jpy, value), destination_currency)
       {:jpy, :mxn} ->
-        print_currency_equivalence(value, source_currency, jpy_to_mxn(value), destination_currency)
+        print_currency_equivalence(value, source_currency, exchange(:jpy, :mxn, value), destination_currency)
       {:usd, :jpy} ->
-        print_currency_equivalence(value, source_currency, usd_to_jpy(value), destination_currency)
+        print_currency_equivalence(value, source_currency, exchange(:usd, :jpy, value), destination_currency)
       {:jpy, :usd} ->
-        print_currency_equivalence(value, source_currency, jpy_to_usd(value), destination_currency)
+        print_currency_equivalence(value, source_currency, exchange(:jpy, :usd, value), destination_currency)
       _ ->
         no_convertion
     end

@@ -1,25 +1,25 @@
 defmodule CurrencyConverter do
-  def mxn_to_usd(value) do
+  def exchange(:mxn, :usd, value) when value >= 0 do
     value * 0.048
   end
 
-  def usd_to_mxn(value) do
+  def exchange(:usd, :mxn, value) when value >= 0 do
     value * 20.75
   end
 
-  def mxn_to_jpy(value) do
+  def exchange(:mxn, :jpy, value) when value >= 0 do
     value * 0.19
   end
 
-  def jpy_to_mxn(value) do
+  def exchange(:jpy, :mxn, value) when value >= 0 do
     value * 5.19
   end
 
-  def usd_to_jpy(value) do
+  def exchange(:usd, :jpy, value) when value >= 0 do
     value * 0.0093
   end
 
-  def jpy_to_usd(value) do
+  def exchange(:jpy, :usd, value) when value >= 0 do
     value * 107.55
   end
 end
